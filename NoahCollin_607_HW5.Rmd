@@ -1,0 +1,43 @@
+---
+title: "607_NoahCollin_HW5"
+author: "Noah Collin"
+date: "9/26/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+```
+
+## 607 HW 5
+
+```{r initialData}
+rawData1 <-  read_excel("israeli_vaccination_data_analysis_start.xlsx")
+```
+
+``` {r dropRows, basic cleaning}
+data1 <- rawData1 %>% slice(-c(6:15))
+data1
+```
+
+```{r round crazy decimals}
+#TODO
+data1 <- data1 %>% mutate(round(2))
+data1
+
+```
+```{r gatherer}
+#names(data1)
+print(data1[,2])
+#data1$percent <- data1[,]
+```
+## Discussion:
+1)
+It's not possible to figure out the exact population since the given percentages don't equal 100.  It's interesting to not that the age break downs are citizens below 50 and citizens above 50, so it's possible the missing data is that of people who are exactly 50.  For those under 50, for example, 23.3% of the citizens under 50, or 1116834 people, are not vaccinated, and 3501118, or 73%  of citizens below 50 are vaccinated.  The percentage total to 96.3%.  It's possible and even sensible that the 3.7% that are unaccounted for are exactly 50 years of age.  But we can't know that for certain with the information provided.  One way to guess the total population would be to say if the sum of the two cohorts is 1116834 + 3501118 = 4617952 and that represents 96.7% of the total, then 100% of the total would be 4,788,816.  
+
+2)
+The efficacy vs disease is -.00032% (11/100k - 43/100k) for Israelis younger than 50 and (290/100k-171/100k) =  .00119% for Israelis over 50.
